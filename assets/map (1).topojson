@@ -1,0 +1,34 @@
+{
+    "type": "Topology",
+    "objects": {
+        "collection": {
+            "type": "GeometryCollection",
+            "geometries": [
+                {
+                    "type": "Point",
+                    "coordinates": [
+                        0,
+                        0
+                    ]
+                }
+            ]
+        }
+    },
+    "arcs": [],
+    "transform": {
+        "scale": [
+            1,
+            1
+        ],
+        "translate": [
+            151.2093,
+            -33.8688
+        ]
+    },
+    "bbox": [
+        151.2093,
+        -33.8688,
+        151.2093,
+        -33.8688
+    ]
+}

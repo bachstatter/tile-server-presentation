@@ -1,0 +1,6 @@
+const ogr2ogr = require('ogr2ogr')
+
+const convertShapeFileToGeoJson = path =>
+  ogr2ogr(path)
+    .format('GeoJSON')
+    .promise()
