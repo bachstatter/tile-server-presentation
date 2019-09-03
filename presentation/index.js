@@ -37,7 +37,7 @@ const images = {
   zoomedOut: require('../assets/img/zoomed-out.png'),
 }
 
-preloader(images)
+preloader(Object.values(images))
 
 const theme = createTheme(
   {
