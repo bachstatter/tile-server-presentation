@@ -35,6 +35,7 @@ const images = {
   tfv2: require('../assets/img/tfv2.png'),
   zoomedIn: require('../assets/img/zoomed-in.png'),
   zoomedOut: require('../assets/img/zoomed-out.png'),
+  mapshaper: require('../assets/img/mapshaper.png'),
 }
 
 preloader(Object.values(images))
@@ -333,7 +334,7 @@ export default class Presentation extends React.Component {
                 things is that most map
                 libraries dont support
                 topojson, this means
-                that usally the server
+                that usually the server
                 sends topojson and the
                 first thing you do on
                 the client is to convert
@@ -436,15 +437,11 @@ export default class Presentation extends React.Component {
           />
         </Slide>
         <Slide>
-          <iframe
-            style={{
-              width: '100%',
-              height: '90vh',
-            }}
-            src={
-              'https://mapshaper.org/'
-            }
-          />
+          <Image
+            width={'100%'}
+            height={'100%'}
+            src={images.mapshaper}
+          ></Image>
         </Slide>
         <CodeSlide
           lang="js"
@@ -492,8 +489,8 @@ export default class Presentation extends React.Component {
               instead you have to play
               around with different
               algorithms and how hard
-              they should be aplied till
-              it fits your usecase.
+              they should be applied
+              till it fits your usecase.
             </p>
           }
         >
@@ -639,13 +636,13 @@ export default class Presentation extends React.Component {
         <Slide
           notes={
             <p>
-              There's is a lot I could
-              talk about to say about
-              postgis. It can do all the
-              things we saw qgis and
-              ogr2ogr can do. That is
-              simplyfying, manipulating,
-              querying etc.
+              There's is a lot of things
+              to say about postgis. It
+              can do all the things we
+              saw qgis and ogr2ogr can
+              do. That is simplyfying,
+              manipulating, querying
+              etc.
             </p>
           }
         >
@@ -654,6 +651,24 @@ export default class Presentation extends React.Component {
 
         <CodeSlide
           lang="js"
+          notes={
+            <div>
+              <p>
+                But it proved also quite
+                hard to come up with
+                examples that show
+                everything you can do.
+                this example is from the
+                postgis site.
+              </p>
+              <p>
+                As you can see it's
+                normal sql. but we do
+                use a function called
+                St_Contains.
+              </p>
+            </div>
+          }
           code={require('raw-loader!../assets/superhero-sql')}
           ranges={[
             {
@@ -741,23 +756,6 @@ export default class Presentation extends React.Component {
             </ul>
           }
         />
-        <Slide
-          notes={
-            <p>
-              For the ones that still
-              following a long you might
-              noticed that I didn't use
-              postgis mvt tiles
-              function. There's a reason
-              for that.
-            </p>
-          }
-        >
-          <Text textColor="tertiary">
-            createVectorTile()
-          </Text>
-          <Image src={images.curious} />
-        </Slide>
         <Slide>
           <Heading>
             Tech for building a tile
