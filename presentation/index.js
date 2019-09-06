@@ -65,12 +65,25 @@ export default class Presentation extends React.Component {
           transition={['zoom']}
           bgColor="primary"
           notes={
-            <p>
-              Hi, my name is Joachim
-              Bachstatter, today I'm
-              talking about building a
-              tile server in node.js
-            </p>
+            <div>
+              <p>
+                Hi, my name is Joachim
+                Bachstatter, today I'm
+                talking about building a
+                tile server in node.js.
+              </p>
+              <p>
+                I work at{' '}
+                <a href="https://smallmultiples.com.au/">
+                  Small Multiples
+                </a>
+                , and you can find me on
+                Twitter at{' '}
+                <a href="https://twitter.com/bachstatter">
+                  @bachstatter
+                </a>
+              </p>
+            </div>
           }
         >
           <Heading
@@ -118,7 +131,7 @@ export default class Presentation extends React.Component {
               </p>
               <p>
                 Large datasets that
-                needed ot be updated
+                needed to be updated
                 from a data management
                 system.
               </p>
@@ -129,7 +142,7 @@ export default class Presentation extends React.Component {
               <p>
                 I learnt a lot so I
                 thought I share some of
-                that knowledge
+                that knowledge.
               </p>
             </div>
           }
@@ -152,9 +165,11 @@ export default class Presentation extends React.Component {
               Unfortunately it's not a
               public project, but if
               you're curious you can
-              check out our webpage
-              small.mu and read some
-              about.
+              check out our webpage{' '}
+              <a href="https://smallmultiples.com.au/projects/visualising-public-transport-and-private-vehicle-trips-around-victoria/">
+                small.mu projects page
+              </a>
+              &nbsp;and read about it.
             </p>
           }
         >
@@ -173,11 +188,11 @@ export default class Presentation extends React.Component {
           bgColor="primary"
           notes={
             <p>
-              Any way, before we jump in
-              to figure out how to build
-              a tile server I thought it
-              might be worth while to
-              talk about some general
+              Anyway, before we jump in
+              to how to build a tile
+              server, I thought it might
+              be worthwhile talking
+              about some general
               geospatial data concepts.
             </p>
           }
@@ -203,8 +218,13 @@ export default class Presentation extends React.Component {
               </p>
               <p>
                 Common data formats I
-                work with is:
+                work with are:
               </p>
+              <ul>
+                <li>Geojson</li>
+                <li>Topojson</li>
+                <li>Shapefile</li>
+              </ul>
             </div>
           }
         >
@@ -224,19 +244,20 @@ export default class Presentation extends React.Component {
           bgColor="primary"
           notes={
             <div>
+              <h2>Geojson</h2>
               <p>
-                Geojson is an
-                specification of how to
+                Geojson is a
+                specification for how to
                 structure json for
                 geospatial data. So as
-                you probably can guess
+                you can probably guess,
                 this is very web
                 friendly.
               </p>
               <p>
                 You can represent
                 everything from points
-                to MultiPolygons
+                to MultiPolygons.
               </p>
             </div>
           }
@@ -264,18 +285,29 @@ export default class Presentation extends React.Component {
           lang="js"
           code={require('raw-loader!../assets/geojson')}
           notes={
-            <ul>
-              <li>
-                Just like normal json
-                it's a bit repatitve and
-                in my opnion file size
-                if the biggest drawback
-              </li>
-              <li>
-                Anyway this is how
-                geojson looks:
-              </li>
-            </ul>
+            <div>
+              <h2>Geojson drawbacks</h2>
+              <ul>
+                <li>
+                  Just like normal json,
+                  it's a bit repetitive.
+                  In my opinion file
+                  size is the biggest
+                  drawback of this
+                  format.
+                </li>
+                <li>
+                  Anyway this is how
+                  geojson looks:
+                </li>
+                <li>
+                  <code>
+                    (Press the down key
+                    to check it out!)
+                  </code>
+                </li>
+              </ul>
+            </div>
           }
           ranges={[
             {
@@ -291,7 +323,7 @@ export default class Presentation extends React.Component {
         <Slide
           notes={
             <p>
-              So what is topojson then?
+              So what is Topojson then?
             </p>
           }
         >
@@ -316,6 +348,7 @@ export default class Presentation extends React.Component {
         <Slide
           notes={
             <div>
+              <h2>Topojson</h2>
               <p>
                 Topojson is also a json
                 specification
@@ -323,35 +356,39 @@ export default class Presentation extends React.Component {
               <p>
                 It tries to tackle the
                 file size problem of
-                geojson. To acheive that
+                geojson. To achieve that
                 it reuses geometries.
                 This means that is not
                 as readable for us
                 humans.
               </p>
               <p>
-                Another slitgly annoying
-                things is that most map
-                libraries dont support
-                topojson, this means
-                that usually the server
-                sends topojson and the
-                first thing you do on
-                the client is to convert
-                it to geojson.
+                Another slightly
+                annoying things is that
+                most map libraries dont
+                support topojson, which
+                means that usually the
+                server sends topojson
+                and the first thing you
+                do on the client is to
+                convert it to geojson.
               </p>
               <p>
-                Depdending on the
-                dataset you get large
-                savings so its def
-                worthwhile.
+                Depending on the dataset
+                you get large savings
+                though, so it's
+                definitely worthwhile.
               </p>
             </div>
           }
         >
           <Heading>Topojson</Heading>
         </Slide>
-        <Slide>
+        <Slide
+          notes={
+            <p>Now on to shapefiles.</p>
+          }
+        >
           <Heading>Data format</Heading>
           <List>
             <ListItem
@@ -377,14 +414,20 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide
           notes={
-            <p>
-              Shapes files are a very
-              common dataformat as well.
-              Its not json based and
-              also not as web friendly.
-              Usually I'll convert it to
-              topo or geojson.
-            </p>
+            <div>
+              <h3>Shapefiles</h3>
+              <p>
+                <a href="https://en.wikipedia.org/wiki/Shapefile">
+                  Shapefile
+                </a>{' '}
+                is a very common data
+                format as well. It's not
+                json-based and also not
+                as web friendly. Usually
+                I'll convert it to
+                topojson or geojson.
+              </p>
+            </div>
           }
         >
           <Heading>Shapefiles</Heading>
@@ -392,31 +435,38 @@ export default class Presentation extends React.Component {
         <Slide
           notes={
             <div>
+              <h3>Handy tools</h3>
               <p>
                 Some handy tool for
                 viewing and processing
-                geospatial data.
+                geospatial data:
               </p>
-              <p>
-                Qgis is a open soruce
-                desktop application.
-                Very powerful. A bit
-                overwhelming but can do
-                most things
-              </p>
-              <p>
-                mapshaper, sorta the
-                opposite of qgis. easy
-                to use. Drag and drop
-                interface. Lets you view
-                shapefiles online
-              </p>
-              <p>
-                ogr2ogr, CLI with ltos
-                of feature. Aslo useful
-                for importing data into
-                geospatal databases.
-              </p>
+              <ul>
+                <li>
+                  <b>Qgis</b> is an open
+                  source desktop
+                  application. It's very
+                  powerful and can do
+                  most things, but it's
+                  a bit overwhelming.
+                </li>
+                <li>
+                  <b>Mapshaper</b> is
+                  sortof the opposite of
+                  qgis. It's easy to
+                  use, has a drag and
+                  drop interface, and
+                  lets you view
+                  shapefiles online.
+                </li>
+                <li>
+                  <b>ogr2ogr</b>, a CLI
+                  with lots of features.
+                  Also useful for
+                  importing data into
+                  geospatal databases.
+                </li>
+              </ul>
             </div>
           }
         >
@@ -429,14 +479,28 @@ export default class Presentation extends React.Component {
             <ListItem>ogr2ogr</ListItem>
           </List>
         </Slide>
-        <Slide>
+        <Slide
+          notes={
+            <div>
+              <h3>QGIS interface</h3>
+            </div>
+          }
+        >
           <Image
             width={'100%'}
             height={'100%'}
             src={images.qgis}
           />
         </Slide>
-        <Slide>
+        <Slide
+          notes={
+            <div>
+              <h3>
+                Mapshaper interface
+              </h3>
+            </div>
+          }
+        >
           <Image
             width={'100%'}
             height={'100%'}
@@ -452,13 +516,18 @@ export default class Presentation extends React.Component {
               title: 'ogr2ogr',
             },
           ]}
+          notes={
+            <div>
+              <h3>Using OGR in Node</h3>
+            </div>
+          }
         />
         <Slide
           notes={
             <p>
-              So the question is what to
-              do when the data is too
-              large
+              So the question is: What
+              to do when the data gets
+              too large?
             </p>
           }
         >
@@ -468,42 +537,61 @@ export default class Presentation extends React.Component {
               friendly
             </ListItem>
             <ListItem>
-              Data is small ➡️ geojson
+              Data is small ➡️ use
+              geojson
             </ListItem>
             <ListItem>
               Data is a little bit
-              bigger ➡️ topojson
+              bigger ➡️ use topojson
+            </ListItem>
+            <ListItem>
+              But what about when it's
+              too big for topojson?
             </ListItem>
           </List>
         </Slide>
         <Slide
           notes={
-            <p>
-              First step, simlify: All
-              the tools mentioned before
-              has different way of
-              simplifying the geometeric
-              shapes. Unfortunately
-              there's not one rule that
-              get it perfect every time
-              instead you have to play
-              around with different
-              algorithms and how hard
-              they should be applied
-              till it fits your usecase.
-            </p>
+            <div>
+              <h3>Simplify</h3>
+              <p>
+                First step, simplify:
+                All the tools I've
+                mentioned before have
+                different ways of
+                simplifying the
+                geometeric shapes.
+              </p>
+              <p>
+                Unfortunately there's
+                not one rule that gets
+                it perfect every time.
+                Instead you have to play
+                around with different
+                algorithms and how they
+                should be applied (what
+                level of granularity and
+                compression you require)
+                until it fits your use
+                case.
+              </p>
+            </div>
           }
         >
           <Heading>Simplify</Heading>
         </Slide>
         <Slide
           notes={
-            <p>
-              We can prerposs the data
-              and remove geometries and
-              propteries not needed for
-              our use case
-            </p>
+            <div>
+              <h3>Preprocessing</h3>
+              <p>
+                We can preprocess the
+                data and remove
+                geometries and
+                properties that are not
+                needed for our use case
+              </p>
+            </div>
           }
         >
           <Heading>Preprocess</Heading>
@@ -512,7 +600,12 @@ export default class Presentation extends React.Component {
           notes={
             <p>
               A library that makes that
-              easy is turf.js
+              very easy is turf.js. I
+              won't go into that in
+              detail here, but you can{' '}
+              <a href="https://turfjs.org/">
+                read up about it.
+              </a>
             </p>
           }
         >
@@ -521,23 +614,26 @@ export default class Presentation extends React.Component {
         <Slide
           notes={
             <div>
+              <h3>
+                Building a tile server
+              </h3>
               <p>
                 These are all useful
                 tools but in some cases
-                you have even more
+                you might have even more
                 requirements. You
                 dataset might too large
-                or you need more
-                flexibility.
+                for example, or you need
+                more flexibility.
               </p>
               <p>
                 When you look at maps
-                loading you have
-                probably seen that it's
-                loading square images,
-                or tiles. A tile server
-                is a server that serves
-                these images.
+                loading, you've probably
+                seen that it's loading
+                square images, or{' '}
+                <i>tiles</i>. A tile
+                server is a server that
+                serves these images.
               </p>
             </div>
           }
@@ -546,58 +642,90 @@ export default class Presentation extends React.Component {
             Building a tile server.
           </Heading>
         </Slide>
-        <Slide>
-          <Heading
-            notes={
-              <div>
-                <p>
-                  There are mainly two
-                  types of tiles, raster
-                  tiles and vector
-                  tiles. Vector tiles is
-                  a little more fancy
-                  and sorta the new way.
-                  I prefer them because
-                  you get to style your
-                  tiles client side
-                  whereas raster tiles
-                  is styles from the
-                  tile server it self.
-                </p>
-                <p>
-                  It's also faster since
-                  the tiles get send as
-                  binary data and you
-                  only get the data that
-                  is currently in view.
-                  The tile server we
-                  gonna create is gonna
-                  generate vector tiles.
-                  in the MVT format.
-                  That stands for Mapbox
-                  vector tiles.
-                </p>
-              </div>
-            }
-          >
+        <Slide
+          notes={
+            <div>
+              <h3>
+                Raster vs Vector tiles
+              </h3>
+              <p>
+                There are mainly two
+                types of tiles, raster
+                tiles and vector tiles.
+                Vector tiles are a
+                little more fancy and
+                definitely the hotter
+                new technology. I prefer
+                them because you get to
+                style your tiles client
+                side, whereas raster
+                tiles are styled on the
+                tile server itself.
+              </p>
+              <p>
+                Vector tiles After also
+                faster, since the tiles
+                are sent as binary data
+                and you only get the
+                data that's currently in
+                view. The tile server
+                we're going to create
+                now is going to generate
+                vector tiles, in the MVT
+                format. That stands for
+                Mapbox Vector Tiles.
+              </p>
+            </div>
+          }
+        >
+          <Heading>
             Raster vs Vector tiles
           </Heading>
         </Slide>
         <Slide
-          note={
-            <p>
-              MVT tiles are an open
-              standard under a Creative
-              Commons Attribution 3.0 US
-              License
-            </p>
+          notes={
+            <div>
+              <h3>
+                Mapbox Vector Tiles
+              </h3>
+              <p>
+                MVT tiles are an open
+                standard, released under
+                a Creative Commons
+                Attribution 3.0 US
+                License
+              </p>
+            </div>
           }
         >
           <Heading>
             Mapbox Vector Tiles
           </Heading>
         </Slide>
-        <Slide>
+        <Slide
+          notes={
+            <div>
+              <h3>
+                Tech for building a tile
+                server
+              </h3>
+              <ul>
+                <li>
+                  Postgres with PostGis
+                  extention
+                </li>
+                <li>
+                  Node.js with
+                  express.js
+                </li>
+                <li>mapnik</li>
+                <li>
+                  redis (for caching)
+                </li>
+              </ul>
+            </div>
+          }
+        >
           <Heading>
             Tech for building a tile
             server
@@ -618,15 +746,21 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide
           notes={
-            <p>
-              Most of you probably heard
-              about postgres, it's and
-              open source very popular
-              SQL database. PostGis is a
-              postgress extention that
-              gives postgres geospatioal
-              capabilities.
-            </p>
+            <div>
+              <h3>
+                Postgres with PostGis
+              </h3>
+              <p>
+                Most of you probably
+                heard about postgres,
+                it's an open source very
+                popular SQL database.
+                PostGis is a postgres
+                extention that gives
+                postgres geospatial
+                capabilities.
+              </p>
+            </div>
           }
         >
           <Heading>
@@ -635,15 +769,18 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide
           notes={
-            <p>
-              There's is a lot of things
-              to say about postgis. It
-              can do all the things we
-              saw qgis and ogr2ogr can
-              do. That is simplyfying,
-              manipulating, querying
-              etc.
-            </p>
+            <div>
+              <h3>PostGis</h3>
+              <p>
+                There's a lot to say
+                about postgis. It can do
+                all the things we saw
+                qgis and ogr2ogr do:
+                simplifying,
+                manipulating, querying
+                and so on.
+              </p>
+            </div>
           }
         >
           <Heading>Postgis</Heading>
@@ -653,19 +790,27 @@ export default class Presentation extends React.Component {
           lang="js"
           notes={
             <div>
+              <h3>SQL example</h3>
               <p>
-                But it proved also quite
-                hard to come up with
-                examples that show
-                everything you can do.
-                this example is from the
+                It's quite hard to come
+                up with simple examples
+                that show you everything
+                PostGis can do. This
+                example is from the
                 postgis site.
               </p>
               <p>
                 As you can see it's
-                normal sql. but we do
+                normal sql, but we do
                 use a function called
                 St_Contains.
+              </p>
+              <p>
+                <code>St_Contains</code>{' '}
+                allows you to query
+                whether one geometry is
+                contained within another
+                geometry (place).
               </p>
             </div>
           }
@@ -681,8 +826,23 @@ export default class Presentation extends React.Component {
           lang="js"
           code={require('raw-loader!../assets/mvt-sql')}
           ranges={[{ loc: [0, 2] }]}
-          notes={`Although we want to display things on a map. So instead of getting the name of a super hero we want the geometry.
-          Postgis also comes with ST_AsMVT function when gives us maptiles directly. Very handy indeed`}
+          notes={
+            <p>
+              Though we want to display
+              things on a map. So we're
+              not interested in the name
+              of the superhero, we're
+              interested in his or her
+              geometry. Postgis also
+              comes with a{' '}
+              <code>ST_AsMVT</code>
+              function which gives us
+              maptiles directly (MVT,
+              again, being a Mapbox
+              Vector Tile). Very handy
+              indeed!
+            </p>
+          }
         />
         <Slide>
           <Heading>
@@ -722,35 +882,36 @@ export default class Presentation extends React.Component {
           notes={
             <ul>
               <li>
-                I dont have to explain
-                express. But what we
-                gonna do is create one
-                route width a few
-                params. Position on the
-                x, y, z axis. These are
-                all the number we needed
-                to figure out a tile
-                what should be in a
-                tile. Frontend map
-                library will
-                automatically make new
-                request with these
+                I'm sure I don't have to
+                explain express to you.
+                We'll start off by
+                creating one route with
+                a few params: the x, y
+                and z co-ordinates of
+                the map view we want.
+                These are the only
+                numbers we needed to
+                figure out what should
+                be in a tile. The
+                frontend map library
+                will automatically make
+                new requests with these
                 numbers as you pan and
                 zoom.
               </li>
               <li>
                 The route handler
-                function it, self is
-                quite easy. We call a
-                very convienent function
+                function itself is quite
+                easy. We call a very
+                convenient function
                 called createVectorTile.
                 We give it the sql we
                 want it to execute and
-                the x,y,z coords. This
-                will give us back a
+                the x,y,z coordinates.
+                This will give us back a
                 vector tile in a
                 protobuf format and we
-                just pass that a long to
+                just pass that along to
                 the client.
               </li>
             </ul>
@@ -787,17 +948,23 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide
           notes={
-            <p>
-              So now we gonna start
-              using a library called
-              mapnik. I'm using Mapnik
-              for optimisations. Mapnik,
-              according to themselves
-              has lightning-fast
-              cartographic algorithms.
-              Its a c++ ibrary with a
-              node package.
-            </p>
+            <div>
+              <h3>Mapnik</h3>
+              <p>
+                So now we're going to
+                start using a library
+                called mapnik. I'm using
+                Mapnik for
+                optimisations. Mapnik,
+                (according to
+                themselves) have
+                "lightning-fast
+                cartographic
+                algorithms". It's a c++
+                ibrary with a node
+                package.
+              </p>
+            </div>
           }
         >
           <Heading>Mapnik</Heading>
@@ -819,15 +986,17 @@ export default class Presentation extends React.Component {
         <Slide
           notes={
             <p>
-              But when we zoom out we it
+              But when we zoom out, it
               just looks like one line.
-              In this example it
-              probably would matter if
-              we always got geometry for
-              three lines. But if we had
-              millions of lines it's a
-              make it or break it
-              situation.
+              Mapnik would optimise this
+              view so only one vector
+              line is sent to the
+              client. In this case with
+              only three lines, that's
+              not a big deal. But if we
+              had millions of lines,
+              that would be a
+              make-or-break situation.
             </p>
           }
         >
@@ -862,90 +1031,113 @@ export default class Presentation extends React.Component {
             { loc: [25, 30] },
           ]}
           notes={
-            <ul>
-              <li>
-                This is a very powerful
-                function that we will be
-                able to resuse a lot.
-                The first thing we do is
-                require(mapnik) and
-                install default plugins.
-              </li>
-              <li>
-                This is the projection
-                we're going to use. That
-                is the Pseudo Spherical
-                Mercator. I don't know
-                much about how it works,
-                more than its the
-                defacto standard for
-                maps on the web.
-              </li>
-              <li>
-                Time to create our
-                function, we take the
-                sql and xyz coordinates
-                as argument.
-              </li>
-              <li>
-                After that the first we
-                gonna do is setup our
-                database connection. You
-                need all the usual stuff
-                you need to connect to a
-                db.
-              </li>
-              <li>
-                We also specify a table
-                propetery. Here we could
-                just give it a name of a
-                table in our database.
-                But you can also define
-                a subquery, which is
-                what makes this function
-                so flexible.
-              </li>
-              <li>
-                Now that we have our
-                config setup lets create
-                our tile. First the
-                create a map. Saying how
-                large our tile should be
-                and what projection to
-                use
-              </li>
-              <li>
-                Then we create a layer.
-                Give it a name and the
-                same projection again.
-              </li>
+            <div>
+              <h3>
+                createVectorTile.js
+              </h3>
+              <code>
+                Press your down button
+                to see the code!
+              </code>
+              <ul>
+                <li>
+                  This is a very
+                  powerful function that
+                  we will be able to
+                  resuse a lot. The
+                  first thing we do is
+                  require(mapnik) and
+                  install default
+                  plugins.
+                </li>
+                <li>
+                  The{' '}
+                  <code>
+                    const proj4
+                  </code>{' '}
+                  line is the projection
+                  we're going to use. In
+                  this case, it's Pseudo
+                  Spherical Mercator. I
+                  don't know much about
+                  how it works, other
+                  than it's the defacto
+                  standard for maps on
+                  the web.
+                </li>
+                <li>
+                  Time to create our
+                  function, we take the
+                  sql and xyz
+                  coordinates as
+                  argument.
+                </li>
+                <li>
+                  After that the first
+                  thing we're going to
+                  do is set up our
+                  database connection.
+                  You need all the usual
+                  stuff you need to
+                  connect to a db.
+                </li>
+                <li>
+                  We also specify a
+                  table property. Here
+                  we could just give it
+                  a name of a table in
+                  our database. But you
+                  can also define a
+                  subquery, which is
+                  what makes this
+                  function so flexible.
+                </li>
+                <li>
+                  Now that we have our
+                  config set up, lets
+                  create our tile. First
+                  we create a map,
+                  saying how large our
+                  tile should be and
+                  what projection to
+                  use.
+                </li>
+                <li>
+                  Then we create a
+                  layer, give it a name
+                  and the same
+                  projection again.
+                </li>
 
-              <li>
-                After that we create a
-                datasource using our db
-                config and attach it to
-                the layer.
-              </li>
-              <li>
-                Next we attach the layer
-                to the map and create a
-                vector tile. With the
-                map and the tile create
-                we're ready to render.
-              </li>
-              <li>
-                The apis are a callback
-                based so lets wrap it in
-                a promise.
-              </li>
-              <li>
-                With that down we call
-                render to create the
-                tile. and then getData
-                to convert it to a
-                buffer and return.
-              </li>
-            </ul>
+                <li>
+                  After that we create a
+                  datasource using our
+                  db config and attach
+                  it to the layer.
+                </li>
+                <li>
+                  Next we attach the
+                  layer to the map and
+                  create a vector tile.
+                  With the map and the
+                  tile created we're
+                  ready to render.
+                </li>
+                <li>
+                  The apis are callback
+                  based, so lets wrap it
+                  in a promise.
+                </li>
+                <li>
+                  With that task down,
+                  we call render to
+                  create the tile, and
+                  then getData to
+                  convert it to a buffer
+                  and return.
+                </li>
+              </ul>
+            </div>
           }
         />
         <Slide>
@@ -987,22 +1179,25 @@ export default class Presentation extends React.Component {
         <Slide
           transition={['fade']}
           notes={
-            <p>
-              Another nice aspect of is
-              that this is just a normal
-              express server so we
-              leverage our existing
-              knowledge of cahnging. We
-              can add a cahche header to
-              the repsonse and put all
-              tiles in redis. I reccomed
-              putting the generated
-              tiles in redis since
-              querying geo data nad
-              generating tiles is very
-              quite hard work for the
-              server.
-            </p>
+            <div>
+              <h3>Caching</h3>
+              <p>
+                A nice aspect of using a
+                normal express server is
+                that we can leverage our
+                existing knowledge of
+                caching. We can add a
+                cache header to the
+                repsonse and put all
+                tiles in redis. I
+                recommend putting the
+                generated tiles in
+                redis, since querying
+                geodata and generating
+                tiles is quite hard work
+                for the server.
+              </p>
+            </div>
           }
         >
           <Heading>Caching</Heading>
@@ -1010,10 +1205,10 @@ export default class Presentation extends React.Component {
         <Slide
           notes={
             <p>
-              That was all I had for you
+              That's all I have for you
               tonight. I'll happily try
-              to answer question if you
-              have any.
+              to answer questions if you
+              have any!
             </p>
           }
           transition={['fade']}
